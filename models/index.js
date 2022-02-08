@@ -9,7 +9,7 @@ const sequelize = new Sequelize(
     db.PASSWORD, {
     host: db.HOST,
     dialect: db.dialect,
-    operatorsAliases: false,
+    operatorsAliases: 0,
 
 
     pool: {
@@ -34,8 +34,9 @@ const db_structure = {};
 db_structure.Sequelize = Sequelize;
 db_structure.sequelize = sequelize;
 
-db_structure.users = require('./userModel.js')(sequelize, DataTypes);
+
 db_structure.departements = require('./departementModel.js')(sequelize, DataTypes);
+db_structure.users = require('./userModel.js')(sequelize, DataTypes);
 db_structure.sequelize.sync({ force: false })
     .then(() => {
         console.log('yes re-sync done !');
